@@ -1,4 +1,35 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Page    
+{% endblock %}
+
+{% block body_block %}
+    <div>
+        {% if page %}
+            <h1>{{ page.title }}</h1>
+            {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>No pages currently under current title.</strong>
+            {% endif %}
+        {% else %}
+            The specified pages does not exist.
+        {% endif %}
+        </div>
+
+        <div>
+            <a href={% url 'rango:index' %}>Rango Index</a>
+        </div>
+
+{% endblock %}
+
+{% comment %} <!DOCTYPE html>
 
 <html>
     <head>
@@ -29,4 +60,4 @@
 
     </body>
 
-</html>
+</html> {% endcomment %}
